@@ -1,3 +1,7 @@
+## [0.1.1] - 27/07/2020.
+
+* Update package description
+
 ## [0.1.0] - 27/07/2020.
 
 * Initial release.
