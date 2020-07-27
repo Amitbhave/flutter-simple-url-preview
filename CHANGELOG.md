@@ -1,3 +1,7 @@
+## [0.1.3] - 27/07/2020.
+
+* Update open issues url(homepage)
+
 ## [0.1.2] - 27/07/2020.
 
 * Update readme
