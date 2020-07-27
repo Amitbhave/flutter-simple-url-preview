@@ -1,11 +1,13 @@
 # simple_url_preview
 
 Flutter package to show url preview
+
 ![In Action](https://github.com/Amitbhave/flutter-simple-url-preview/blob/master/preview_in_action.png)
 
 ## Getting Started
 
 This shows url preview of a URL.
+
 Currently only supports [Open Graph Protocol](https://www.ogp.me/)
 
 ## How to use ?
@@ -55,6 +57,7 @@ Would :heart: to see any contributions.
 
 ### Appreciate:
 If you liked my work, show some :heart: by :star: repo.
+
 Also you can appreciate by
 
 <p>
