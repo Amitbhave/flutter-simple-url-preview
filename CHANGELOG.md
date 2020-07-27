@@ -1,3 +1,7 @@
+## [0.1.2] - 27/07/2020.
+
+* Update readme
+
 ## [0.1.1] - 27/07/2020.
 
 * Update package description
