@@ -1,6 +1,7 @@
 # simple_url_preview
 
 Flutter package to show url preview
+![In Action](https://github.com/Amitbhave/flutter-simple-url-preview/blob/master/screenshot.png)
 
 ## Getting Started
 
