@@ -48,7 +48,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   int _descriptionLines;
   Color _imageLoaderColor;
 
-  void getUrlData() async {
+  void _getUrlData() async {
     if (!isURL(widget.url)) {
       setState(() {
         _urlPreviewData = null;
@@ -60,10 +60,10 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     if (response.statusCode == 200) {
       var document = parse(response.body);
       Map data = {};
-      extractOGData(document, data, 'og:title');
-      extractOGData(document, data, 'og:description');
-      extractOGData(document, data, 'og:site_name');
-      extractOGData(document, data, 'og:image');
+      _extractOGData(document, data, 'og:title');
+      _extractOGData(document, data, 'og:description');
+      _extractOGData(document, data, 'og:site_name');
+      _extractOGData(document, data, 'og:image');
 
       if (data != null && data.isNotEmpty) {
         setState(() {
@@ -78,7 +78,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     }
   }
 
-  void extractOGData(Document document, Map data, String parameter) {
+  void _extractOGData(Document document, Map data, String parameter) {
     var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere(
         (meta) => meta.attributes['property'] == parameter,
         orElse: () => null);
@@ -111,14 +111,15 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _isClosable = widget.isClosable ?? false;
     _textColor = widget.textColor ?? Theme.of(context).accentColor;
     _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
-    _imageLoaderColor = widget.imageLoaderColor ?? Theme.of(context).accentColor;
-    initializeTitleLines();
-    initializeDescriptionLines();
-    initializePreviewHeight();
-    getUrlData();
+    _imageLoaderColor =
+        widget.imageLoaderColor ?? Theme.of(context).accentColor;
+    _initializeTitleLines();
+    _initializeDescriptionLines();
+    _initializePreviewHeight();
+    _getUrlData();
   }
 
-  void initializePreviewHeight() {
+  void _initializePreviewHeight() {
     if (widget.previewHeight == null || widget.previewHeight < 150) {
       _previewHeight = 150;
     } else {
@@ -126,16 +127,18 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     }
   }
 
-  void initializeDescriptionLines() {
-    if(widget.descriptionLines == null || (widget.descriptionLines > 3 || widget.descriptionLines < 1)) {
+  void _initializeDescriptionLines() {
+    if (widget.descriptionLines == null ||
+        (widget.descriptionLines > 3 || widget.descriptionLines < 1)) {
       _descriptionLines = 3;
     } else {
       _descriptionLines = widget.descriptionLines;
     }
   }
 
-  void initializeTitleLines() {
-    if(widget.titleLines == null || (widget.titleLines > 2 || widget.titleLines < 1)) {
+  void _initializeTitleLines() {
+    if (widget.titleLines == null ||
+        (widget.titleLines > 2 || widget.titleLines < 1)) {
       _titleLines = 2;
     } else {
       _titleLines = widget.titleLines;
@@ -152,9 +155,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
           child: Stack(children: [
             GestureDetector(
               onTap: _launchURL,
-              child: buildPreviewCard(context),
+              child: _buildPreviewCard(context),
             ),
-            buildClosablePreview(),
+            _buildClosablePreview(),
           ]),
         );
       } else {
@@ -165,7 +168,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     }
   }
 
-  Widget buildClosablePreview() {
+  Widget _buildClosablePreview() {
     return _isClosable
         ? Align(
             alignment: Alignment.topRight,
@@ -184,7 +187,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         : EmptyContainer();
   }
 
-  Card buildPreviewCard(BuildContext context) {
+  Card _buildPreviewCard(BuildContext context) {
     return Card(
       elevation: 5,
       color: _bgColor,
@@ -196,7 +199,11 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     MediaQuery.of(context).padding.left -
                     MediaQuery.of(context).padding.right) *
                 0.25,
-            child: PreviewImage(_urlPreviewData['og:image'], _previewHeight, _imageLoaderColor),
+            child: PreviewImage(
+              _urlPreviewData['og:image'],
+              _previewHeight,
+              _imageLoaderColor,
+            ),
           ),
           Expanded(
             child: Padding(
@@ -205,10 +212,20 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  PreviewTitle(_urlPreviewData['og:title'], _textColor, _titleLines),
+                  PreviewTitle(
+                    _urlPreviewData['og:title'],
+                    _textColor,
+                    _titleLines,
+                  ),
                   PreviewDescription(
-                      _urlPreviewData['og:description'], _textColor, _descriptionLines),
-                  PreviewSiteName(_urlPreviewData['og:site_name'], _textColor),
+                    _urlPreviewData['og:description'],
+                    _textColor,
+                    _descriptionLines,
+                  ),
+                  PreviewSiteName(
+                    _urlPreviewData['og:site_name'],
+                    _textColor,
+                  ),
                 ],
               ),
             ),

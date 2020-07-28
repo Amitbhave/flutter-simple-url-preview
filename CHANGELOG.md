@@ -1,3 +1,7 @@
+## [0.1.5] - 28/07/2020.
+
+* Fix formatting, dartdoc issues
+
 ## [0.1.4] - 28/07/2020.
 
 * Use cached_network_image to avoid re-fetching image for same url
