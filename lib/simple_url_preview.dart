@@ -64,66 +64,13 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   int _descriptionLines;
   Color _imageLoaderColor;
 
-  void _getUrlData() async {
-    if (!isURL(widget.url)) {
-      setState(() {
-        _urlPreviewData = null;
-      });
-      return;
-    }
-
-    var response = await get(widget.url);
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
-      Map data = {};
-      _extractOGData(document, data, 'og:title');
-      _extractOGData(document, data, 'og:description');
-      _extractOGData(document, data, 'og:site_name');
-      _extractOGData(document, data, 'og:image');
-
-      if (data != null && data.isNotEmpty) {
-        setState(() {
-          _urlPreviewData = data;
-          _isVisible = true;
-        });
-      }
-    } else {
-      setState(() {
-        _urlPreviewData = null;
-      });
-    }
-  }
-
-  void _extractOGData(Document document, Map data, String parameter) {
-    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere(
-        (meta) => meta.attributes['property'] == parameter,
-        orElse: () => null);
-    if (titleMetaTag != null) {
-      data[parameter] = titleMetaTag.attributes['content'];
-    }
-  }
-
-  void _launchURL() async {
-    if (await canLaunch(Uri.encodeFull(widget.url))) {
-      await launch(Uri.encodeFull(widget.url));
-    } else {
-      throw 'Could not launch ${widget.url}';
-    }
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    reinitializeState();
-  }
-
   @override
   void didUpdateWidget(SimpleUrlPreview oldWidget) {
     super.didUpdateWidget(oldWidget);
-    reinitializeState();
+    _reinitializeState();
   }
 
-  void reinitializeState() {
+  void _reinitializeState() {
     _isClosable = widget.isClosable ?? false;
     _textColor = widget.textColor ?? Theme.of(context).accentColor;
     _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
@@ -158,6 +105,61 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
       _titleLines = 2;
     } else {
       _titleLines = widget.titleLines;
+    }
+  }
+
+  void _getUrlData() async {
+    if (!isURL(widget.url)) {
+      setState(() {
+        _urlPreviewData = null;
+      });
+      return;
+    }
+
+    var response = await get(widget.url);
+    if (response.statusCode != 200) {
+      if (!this.mounted) {
+        return;
+      }
+
+      setState(() {
+        _urlPreviewData = null;
+      });
+    }
+
+    var document = parse(response.body);
+    Map data = {};
+    _extractOGData(document, data, 'og:title');
+    _extractOGData(document, data, 'og:description');
+    _extractOGData(document, data, 'og:site_name');
+    _extractOGData(document, data, 'og:image');
+
+    if (!this.mounted) {
+      return;
+    }
+
+    if (data != null && data.isNotEmpty) {
+      setState(() {
+        _urlPreviewData = data;
+        _isVisible = true;
+      });
+    }
+  }
+
+  void _extractOGData(Document document, Map data, String parameter) {
+    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere(
+        (meta) => meta.attributes['property'] == parameter,
+        orElse: () => null);
+    if (titleMetaTag != null) {
+      data[parameter] = titleMetaTag.attributes['content'];
+    }
+  }
+
+  void _launchURL() async {
+    if (await canLaunch(Uri.encodeFull(widget.url))) {
+      await launch(Uri.encodeFull(widget.url));
+    } else {
+      throw 'Could not launch ${widget.url}';
     }
   }
 

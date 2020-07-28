@@ -1,3 +1,7 @@
+## [0.1.8] - 28/07/2020.
+
+* Add component mounted check
+
 ## [0.1.7] - 28/07/2020.
 
 * Update public API documentation
