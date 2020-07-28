@@ -12,6 +12,8 @@ class MyApp extends StatelessWidget {
       title: 'Simple Url Preview Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.blue,
+        accentColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Simple Url Preview Demo'),
@@ -52,7 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.white,
               bgColor: Colors.red,
               isClosable: true,
-              previewHeight: 150,
+              titleLines: 1,
+              descriptionLines: 2,
+              imageLoaderColor: Colors.white,
             ),
             TextField(
               onChanged: (newValue) => _onUrlChanged(newValue),

@@ -1,3 +1,10 @@
+## [0.1.4] - 28/07/2020.
+
+* Use cached_network_image to avoid re-fetching image for same url
+* Make titleLines and descriptionLines configurable
+* Add 5% width to image
+* Show loader when image is still loading. Override imageLoaderColor to change its color.
+
 ## [0.1.3] - 27/07/2020.
 
 * Update open issues url(homepage)

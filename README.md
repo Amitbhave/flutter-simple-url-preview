@@ -16,7 +16,7 @@ Add simple_url_preview to pubspec.yaml, and hit command 'flutter pub get'
 ```yaml
 dependencies:
   ...
-  simple_url_preview: ^0.1.3
+  simple_url_preview: ^0.1.4
 ```
 
 #### 1) **Simple use:**
@@ -35,6 +35,10 @@ SimpleUrlPreview(
 ```
 
 #### 3) **Override text color and background color:**
+
+Default textColor = Theme.of(context).accentColor
+Default bgColor = Theme.of(context).primaryColor
+
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
@@ -48,6 +52,18 @@ SimpleUrlPreview(
 SimpleUrlPreview(
   url: 'https://pub.dev/',
   isClosable: true,
+),
+```
+
+#### 5) **Override image loader color and title and description lines:**
+
+Default and maximum title lines = 2 and description lines = 3.
+
+```dart
+SimpleUrlPreview(
+  titleLines: 1,
+  descriptionLines: 2,
+  imageLoaderColor: Colors.white,
 ),
 ```
 

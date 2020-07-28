@@ -4,8 +4,9 @@ import 'package:simple_url_preview/widgets/empty_container.dart';
 class PreviewTitle extends StatelessWidget {
   final String _title;
   final Color _textColor;
+  final int _titleLines;
 
-  PreviewTitle(this._title, this._textColor);
+  PreviewTitle(this._title, this._textColor, this._titleLines);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class PreviewTitle extends StatelessWidget {
         _title,
         textAlign: TextAlign.left,
         overflow: TextOverflow.ellipsis,
-        maxLines: 2,
+        maxLines: _titleLines,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 16,

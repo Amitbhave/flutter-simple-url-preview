@@ -18,6 +18,9 @@ class SimpleUrlPreview extends StatefulWidget {
   final bool isClosable;
   final Color textColor;
   final Color bgColor;
+  final int titleLines;
+  final int descriptionLines;
+  final Color imageLoaderColor;
 
   SimpleUrlPreview({
     @required this.url,
@@ -25,6 +28,9 @@ class SimpleUrlPreview extends StatefulWidget {
     this.isClosable,
     this.textColor,
     this.bgColor,
+    this.titleLines,
+    this.descriptionLines,
+    this.imageLoaderColor,
   });
 
   @override
@@ -38,6 +44,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   double _previewHeight;
   Color _textColor;
   Color _bgColor;
+  int _titleLines;
+  int _descriptionLines;
+  Color _imageLoaderColor;
 
   void getUrlData() async {
     if (!isURL(widget.url)) {
@@ -87,8 +96,8 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     reinitializeState();
   }
 
@@ -100,14 +109,37 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
 
   void reinitializeState() {
     _isClosable = widget.isClosable ?? false;
-    _textColor = widget.textColor ?? Colors.black;
-    _bgColor = widget.bgColor ?? Colors.white;
+    _textColor = widget.textColor ?? Theme.of(context).accentColor;
+    _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
+    _imageLoaderColor = widget.imageLoaderColor ?? Theme.of(context).accentColor;
+    initializeTitleLines();
+    initializeDescriptionLines();
+    initializePreviewHeight();
+    getUrlData();
+  }
+
+  void initializePreviewHeight() {
     if (widget.previewHeight == null || widget.previewHeight < 150) {
       _previewHeight = 150;
     } else {
       _previewHeight = widget.previewHeight;
     }
-    getUrlData();
+  }
+
+  void initializeDescriptionLines() {
+    if(widget.descriptionLines == null || (widget.descriptionLines > 3 || widget.descriptionLines < 1)) {
+      _descriptionLines = 3;
+    } else {
+      _descriptionLines = widget.descriptionLines;
+    }
+  }
+
+  void initializeTitleLines() {
+    if(widget.titleLines == null || (widget.titleLines > 2 || widget.titleLines < 1)) {
+      _titleLines = 2;
+    } else {
+      _titleLines = widget.titleLines;
+    }
   }
 
   @override
@@ -163,8 +195,8 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
             width: (MediaQuery.of(context).size.width -
                     MediaQuery.of(context).padding.left -
                     MediaQuery.of(context).padding.right) *
-                0.20,
-            child: PreviewImage(_urlPreviewData['og:image'], _previewHeight),
+                0.25,
+            child: PreviewImage(_urlPreviewData['og:image'], _previewHeight, _imageLoaderColor),
           ),
           Expanded(
             child: Padding(
@@ -173,9 +205,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  PreviewTitle(_urlPreviewData['og:title'], _textColor),
+                  PreviewTitle(_urlPreviewData['og:title'], _textColor, _titleLines),
                   PreviewDescription(
-                      _urlPreviewData['og:description'], _textColor),
+                      _urlPreviewData['og:description'], _textColor, _descriptionLines),
                   PreviewSiteName(_urlPreviewData['og:site_name'], _textColor),
                 ],
               ),
