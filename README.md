@@ -10,13 +10,15 @@ This shows url preview of a URL.
 
 Currently only supports [Open Graph Protocol](https://www.ogp.me/)
 
+Please use latest version of the package.
+
 ## How to use ?
 
 Add simple_url_preview to pubspec.yaml, and hit command 'flutter pub get'
 ```yaml
 dependencies:
   ...
-  simple_url_preview: ^0.1.8
+  simple_url_preview: ^0.1.9
 ```
 
 #### 1) **Simple use:**

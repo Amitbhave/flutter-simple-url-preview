@@ -1,3 +1,7 @@
+## [0.1.9] - 28/07/2020.
+
+* Add back initState method
+
 ## [0.1.8] - 28/07/2020.
 
 * Add component mounted check

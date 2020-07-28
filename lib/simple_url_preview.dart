@@ -65,6 +65,12 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   Color _imageLoaderColor;
 
   @override
+  void initState() {
+    super.initState();
+    _reinitializeState();
+  }
+
+  @override
   void didUpdateWidget(SimpleUrlPreview oldWidget) {
     super.didUpdateWidget(oldWidget);
     _reinitializeState();
