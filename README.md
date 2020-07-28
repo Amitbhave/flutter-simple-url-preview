@@ -61,6 +61,7 @@ Default and maximum title lines = 2 and description lines = 3.
 
 ```dart
 SimpleUrlPreview(
+  url: 'https://pub.dev/',
   titleLines: 1,
   descriptionLines: 2,
   imageLoaderColor: Colors.white,
