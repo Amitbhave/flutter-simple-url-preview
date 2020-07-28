@@ -1,3 +1,7 @@
+## [0.1.7] - 28/07/2020.
+
+* Update public API documentation
+
 ## [0.1.6] - 28/07/2020.
 
 * Remove image load animation, and show plain icon

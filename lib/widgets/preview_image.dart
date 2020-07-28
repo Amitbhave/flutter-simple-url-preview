@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_url_preview/widgets/empty_container.dart';
 
+/// Shows image of URL
 class PreviewImage extends StatelessWidget {
   final String _image;
   final double _totalHeight;

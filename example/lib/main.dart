@@ -54,8 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.white,
               bgColor: Colors.red,
               isClosable: true,
-              titleLines: 1,
-              descriptionLines: 2,
+              titleLines: 2,
+              descriptionLines: 3,
               imageLoaderColor: Colors.white,
             ),
             TextField(

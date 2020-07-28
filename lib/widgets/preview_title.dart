@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_url_preview/widgets/empty_container.dart';
 
+/// Shows title of URL
 class PreviewTitle extends StatelessWidget {
   final String _title;
   final Color _textColor;

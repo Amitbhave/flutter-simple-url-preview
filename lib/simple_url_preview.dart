@@ -12,14 +12,30 @@ import 'package:simple_url_preview/widgets/preview_title.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Provides URL preview
 class SimpleUrlPreview extends StatefulWidget {
+  /// URL for which preview is to be shown
   final String url;
+
+  /// Height of the preview
   final double previewHeight;
+
+  /// Whether or not to show close button for the preview
   final bool isClosable;
+
+  /// Text color
   final Color textColor;
+
+  /// Background color
   final Color bgColor;
+
+  /// Number of lines for Title. (Max possible lines = 2)
   final int titleLines;
+
+  /// Number of lines for Description. (Max possible lines = 3)
   final int descriptionLines;
+
+  /// Color for loader icon shown, till image loads
   final Color imageLoaderColor;
 
   SimpleUrlPreview({

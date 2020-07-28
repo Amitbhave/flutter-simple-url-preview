@@ -16,7 +16,7 @@ Add simple_url_preview to pubspec.yaml, and hit command 'flutter pub get'
 ```yaml
 dependencies:
   ...
-  simple_url_preview: ^0.1.6
+  simple_url_preview: ^0.1.7
 ```
 
 #### 1) **Simple use:**
