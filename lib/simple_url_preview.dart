@@ -67,24 +67,12 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   @override
   void initState() {
     super.initState();
-    _reinitializeState();
+    _getUrlData();
   }
 
   @override
   void didUpdateWidget(SimpleUrlPreview oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _reinitializeState();
-  }
-
-  void _reinitializeState() {
-    _isClosable = widget.isClosable ?? false;
-    _textColor = widget.textColor ?? Theme.of(context).accentColor;
-    _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
-    _imageLoaderColor =
-        widget.imageLoaderColor ?? Theme.of(context).accentColor;
-    _initializeTitleLines();
-    _initializeDescriptionLines();
-    _initializePreviewHeight();
     _getUrlData();
   }
 
@@ -171,6 +159,15 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
 
   @override
   Widget build(BuildContext context) {
+    _isClosable = widget.isClosable ?? false;
+    _textColor = widget.textColor ?? Theme.of(context).accentColor;
+    _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
+    _imageLoaderColor =
+        widget.imageLoaderColor ?? Theme.of(context).accentColor;
+    _initializeTitleLines();
+    _initializeDescriptionLines();
+    _initializePreviewHeight();
+
     if (_urlPreviewData != null) {
       if (_isVisible) {
         return Container(

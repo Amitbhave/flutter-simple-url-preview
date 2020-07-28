@@ -1,3 +1,7 @@
+## [0.1.10] - 28/07/2020.
+
+* Fix Theme.of() use in initState()
+
 ## [0.1.9] - 28/07/2020.
 
 * Add back initState method
