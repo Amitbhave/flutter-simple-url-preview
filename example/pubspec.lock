@@ -97,13 +97,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.1"
-  flutter_spinkit:
-    dependency: transitive
-    description:
-      name: flutter_spinkit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.1.2+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -246,7 +239,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.1.5"
+    version: "0.1.6"
   sky_engine:
     dependency: transitive
     description: flutter

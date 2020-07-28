@@ -1,3 +1,7 @@
+## [0.1.6] - 28/07/2020.
+
+* Remove image load animation, and show plain icon
+
 ## [0.1.5] - 28/07/2020.
 
 * Fix formatting, dartdoc issues
