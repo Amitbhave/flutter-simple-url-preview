@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _url = "";
+  String _url = '';
 
   _onUrlChanged(String updatedUrl) {
     setState(() {
@@ -45,7 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -60,6 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextField(
               onChanged: (newValue) => _onUrlChanged(newValue),
+              decoration: InputDecoration(
+                hintText: 'Enter the url',
+              ),
             ),
           ],
         ),

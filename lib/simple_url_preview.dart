@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
-import 'package:simple_url_preview/widgets/empty_container.dart';
 import 'package:simple_url_preview/widgets/preview_description.dart';
 import 'package:simple_url_preview/widgets/preview_image.dart';
 import 'package:simple_url_preview/widgets/preview_site_name.dart';
@@ -40,14 +39,16 @@ class SimpleUrlPreview extends StatefulWidget {
 
   SimpleUrlPreview({
     @required this.url,
-    this.previewHeight,
+    this.previewHeight = 150.0,
     this.isClosable,
     this.textColor,
     this.bgColor,
-    this.titleLines,
-    this.descriptionLines,
+    this.titleLines = 2,
+    this.descriptionLines = 3,
     this.imageLoaderColor,
-  });
+  })  : assert(previewHeight <= 150.0 && previewHeight > 0, 'The preview height should be less than or equal to 150 and not equal to 0'),
+        assert(titleLines <= 2 && titleLines > 0, 'The title lines should be less than or equal to 2 and not equal to 0'),
+        assert(descriptionLines <= 3 && descriptionLines > 0, 'The description lines should be less than or equal to 3 and not equal to 0');
 
   @override
   _SimpleUrlPreviewState createState() => _SimpleUrlPreviewState();
@@ -76,30 +77,10 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _getUrlData();
   }
 
-  void _initializePreviewHeight() {
-    if (widget.previewHeight == null || widget.previewHeight < 150) {
-      _previewHeight = 150;
-    } else {
-      _previewHeight = widget.previewHeight;
-    }
-  }
-
-  void _initializeDescriptionLines() {
-    if (widget.descriptionLines == null ||
-        (widget.descriptionLines > 3 || widget.descriptionLines < 1)) {
-      _descriptionLines = 3;
-    } else {
-      _descriptionLines = widget.descriptionLines;
-    }
-  }
-
-  void _initializeTitleLines() {
-    if (widget.titleLines == null ||
-        (widget.titleLines > 2 || widget.titleLines < 1)) {
-      _titleLines = 2;
-    } else {
-      _titleLines = widget.titleLines;
-    }
+  void _initialize() {
+    _previewHeight = widget.previewHeight;
+    _descriptionLines = widget.descriptionLines;
+    _titleLines = widget.titleLines;
   }
 
   void _getUrlData() async {
@@ -141,9 +122,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   }
 
   void _extractOGData(Document document, Map data, String parameter) {
-    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere(
-        (meta) => meta.attributes['property'] == parameter,
-        orElse: () => null);
+    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere((meta) => meta.attributes['property'] == parameter, orElse: () => null);
     if (titleMetaTag != null) {
       data[parameter] = titleMetaTag.attributes['content'];
     }
@@ -162,11 +141,8 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _isClosable = widget.isClosable ?? false;
     _textColor = widget.textColor ?? Theme.of(context).accentColor;
     _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
-    _imageLoaderColor =
-        widget.imageLoaderColor ?? Theme.of(context).accentColor;
-    _initializeTitleLines();
-    _initializeDescriptionLines();
-    _initializePreviewHeight();
+    _imageLoaderColor = widget.imageLoaderColor ?? Theme.of(context).accentColor;
+    _initialize();
 
     if (_urlPreviewData != null) {
       if (_isVisible) {
@@ -182,10 +158,10 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
           ]),
         );
       } else {
-        return EmptyContainer();
+        return SizedBox();
       }
     } else {
-      return EmptyContainer();
+      return SizedBox();
     }
   }
 
@@ -205,7 +181,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
               },
             ),
           )
-        : EmptyContainer();
+        : SizedBox();
   }
 
   Card _buildPreviewCard(BuildContext context) {
@@ -216,10 +192,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            width: (MediaQuery.of(context).size.width -
-                    MediaQuery.of(context).padding.left -
-                    MediaQuery.of(context).padding.right) *
-                0.25,
+            width: (MediaQuery.of(context).size.width - MediaQuery.of(context).padding.left - MediaQuery.of(context).padding.right) * 0.25,
             child: PreviewImage(
               _urlPreviewData['og:image'],
               _previewHeight,
