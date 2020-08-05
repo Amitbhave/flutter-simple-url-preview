@@ -73,3 +73,35 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+### Xcode ###
+build
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcworkspace/contents.xcworkspacedata
+
+
+### Objective-C ###
+# OS X
+.DS_Store
+
+# Xcode
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+profile
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+
+# CocoaPods
+Pods
