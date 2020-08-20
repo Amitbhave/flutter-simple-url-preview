@@ -46,9 +46,12 @@ class SimpleUrlPreview extends StatefulWidget {
     this.titleLines = 2,
     this.descriptionLines = 3,
     this.imageLoaderColor,
-  })  : assert(previewHeight >= 150.0, 'The preview height should be greater than or equal to 150'),
-        assert(titleLines <= 2 && titleLines > 0, 'The title lines should be less than or equal to 2 and not equal to 0'),
-        assert(descriptionLines <= 3 && descriptionLines > 0, 'The description lines should be less than or equal to 3 and not equal to 0');
+  })  : assert(previewHeight >= 150.0,
+            'The preview height should be greater than or equal to 150'),
+        assert(titleLines <= 2 && titleLines > 0,
+            'The title lines should be less than or equal to 2 and not equal to 0'),
+        assert(descriptionLines <= 3 && descriptionLines > 0,
+            'The description lines should be less than or equal to 3 and not equal to 0');
 
   @override
   _SimpleUrlPreviewState createState() => _SimpleUrlPreviewState();
@@ -122,7 +125,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   }
 
   void _extractOGData(Document document, Map data, String parameter) {
-    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere((meta) => meta.attributes['property'] == parameter, orElse: () => null);
+    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere(
+        (meta) => meta.attributes['property'] == parameter,
+        orElse: () => null);
     if (titleMetaTag != null) {
       data[parameter] = titleMetaTag.attributes['content'];
     }
@@ -141,7 +146,8 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _isClosable = widget.isClosable ?? false;
     _textColor = widget.textColor ?? Theme.of(context).accentColor;
     _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
-    _imageLoaderColor = widget.imageLoaderColor ?? Theme.of(context).accentColor;
+    _imageLoaderColor =
+        widget.imageLoaderColor ?? Theme.of(context).accentColor;
     _initialize();
 
     if (_urlPreviewData != null) {
@@ -192,7 +198,10 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            width: (MediaQuery.of(context).size.width - MediaQuery.of(context).padding.left - MediaQuery.of(context).padding.right) * 0.25,
+            width: (MediaQuery.of(context).size.width -
+                    MediaQuery.of(context).padding.left -
+                    MediaQuery.of(context).padding.right) *
+                0.25,
             child: PreviewImage(
               _urlPreviewData['og:image'],
               _previewHeight,

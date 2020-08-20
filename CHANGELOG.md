@@ -1,3 +1,8 @@
+## [0.1.11] - 20/08/2020.
+
+* Refactor code
+* Add color for error widget for Image
+
 ## [0.1.10] - 28/07/2020.
 
 * Fix Theme.of() use in initState()

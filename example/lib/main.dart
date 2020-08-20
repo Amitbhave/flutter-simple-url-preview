@@ -46,28 +46,28 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SimpleUrlPreview(
-              url: _url,
-              textColor: Colors.white,
-              bgColor: Colors.red,
-              isClosable: true,
-              titleLines: 2,
-              descriptionLines: 3,
-              imageLoaderColor: Colors.white,
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: TextField(
-                onChanged: (newValue) => _onUrlChanged(newValue),
-                decoration: InputDecoration(
-                  hintText: 'Enter the url',
-                ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SimpleUrlPreview(
+            url: _url,
+            textColor: Colors.white,
+            bgColor: Colors.red,
+            isClosable: true,
+            titleLines: 2,
+            descriptionLines: 3,
+            imageLoaderColor: Colors.white,
+          ),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: TextField(
+              onChanged: (newValue) => _onUrlChanged(newValue),
+              decoration: InputDecoration(
+                hintText: 'Enter the url',
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 }
