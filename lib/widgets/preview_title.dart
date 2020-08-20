@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_url_preview/widgets/empty_container.dart';
 
 /// Shows title of URL
 class PreviewTitle extends StatelessWidget {
@@ -24,7 +23,7 @@ class PreviewTitle extends StatelessWidget {
         ),
       );
     } else {
-      return EmptyContainer();
+      return SizedBox();
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_url_preview/widgets/empty_container.dart';
 
 /// Shows description of URL
 class PreviewDescription extends StatelessWidget {
@@ -7,8 +6,7 @@ class PreviewDescription extends StatelessWidget {
   final Color _textColor;
   final int _descriptionLines;
 
-  PreviewDescription(
-      this._description, this._textColor, this._descriptionLines);
+  PreviewDescription(this._description, this._textColor, this._descriptionLines);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class PreviewDescription extends StatelessWidget {
         ),
       );
     } else {
-      return EmptyContainer();
+      return SizedBox();
     }
   }
 }

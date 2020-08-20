@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_url_preview/widgets/empty_container.dart';
 
 /// Shows site name of URL
 class PreviewSiteName extends StatelessWidget {
@@ -20,7 +19,7 @@ class PreviewSiteName extends StatelessWidget {
         ),
       );
     } else {
-      return EmptyContainer();
+      return SizedBox();
     }
   }
 }
