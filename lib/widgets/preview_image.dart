@@ -18,7 +18,10 @@ class PreviewImage extends StatelessWidget {
           imageUrl: _image,
           fit: BoxFit.fill,
           height: _totalHeight * 0.85,
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => Icon(
+            Icons.error,
+            color: _imageLoaderColor,
+          ),
           progressIndicatorBuilder: (context, url, downloadProgress) => Icon(
             Icons.more_horiz,
             color: _imageLoaderColor,

@@ -45,9 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
+      body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SimpleUrlPreview(
@@ -59,15 +57,17 @@ class _MyHomePageState extends State<MyHomePage> {
               descriptionLines: 3,
               imageLoaderColor: Colors.white,
             ),
-            TextField(
-              onChanged: (newValue) => _onUrlChanged(newValue),
-              decoration: InputDecoration(
-                hintText: 'Enter the url',
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: TextField(
+                onChanged: (newValue) => _onUrlChanged(newValue),
+                decoration: InputDecoration(
+                  hintText: 'Enter the url',
+                ),
               ),
             ),
           ],
         ),
-      ),
     );
   }
 }
