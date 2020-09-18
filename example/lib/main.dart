@@ -56,6 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
             titleLines: 2,
             descriptionLines: 3,
             imageLoaderColor: Colors.white,
+            previewHeight: 150,
+            previewContainerPadding: EdgeInsets.all(10),
+            onTap: () => print('Hello Flutter URL Preview'),
           ),
           Padding(
             padding: EdgeInsets.all(20),

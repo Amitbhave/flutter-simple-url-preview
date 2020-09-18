@@ -1,3 +1,11 @@
+## [1.0.0] - 18/09/2020.
+
+* Add configurable onTap callback for onTap of URL preview
+* Make URL preview container padding configurable
+* Make image perfect square
+* Minimum height of this package is 130 now(after removing default padding)
+* Refactor code
+
 ## [0.1.11] - 20/08/2020.
 
 * Refactor code

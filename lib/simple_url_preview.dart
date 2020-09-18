@@ -37,17 +37,25 @@ class SimpleUrlPreview extends StatefulWidget {
   /// Color for loader icon shown, till image loads
   final Color imageLoaderColor;
 
+  /// Container padding
+  final EdgeInsetsGeometry previewContainerPadding;
+
+  /// onTap URL preview, by default opens URL in default browser
+  final VoidCallback onTap;
+
   SimpleUrlPreview({
     @required this.url,
-    this.previewHeight = 150.0,
+    this.previewHeight = 130.0,
     this.isClosable,
     this.textColor,
     this.bgColor,
     this.titleLines = 2,
     this.descriptionLines = 3,
     this.imageLoaderColor,
-  })  : assert(previewHeight >= 150.0,
-            'The preview height should be greater than or equal to 150'),
+    this.previewContainerPadding,
+    this.onTap,
+  })  : assert(previewHeight >= 130.0,
+            'The preview height should be greater than or equal to 130'),
         assert(titleLines <= 2 && titleLines > 0,
             'The title lines should be less than or equal to 2 and not equal to 0'),
         assert(descriptionLines <= 3 && descriptionLines > 0,
@@ -67,6 +75,8 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   int _titleLines;
   int _descriptionLines;
   Color _imageLoaderColor;
+  EdgeInsetsGeometry _previewContainerPadding;
+  VoidCallback _onTap;
 
   @override
   void initState() {
@@ -84,6 +94,8 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _previewHeight = widget.previewHeight;
     _descriptionLines = widget.descriptionLines;
     _titleLines = widget.titleLines;
+    _previewContainerPadding = widget.previewContainerPadding;
+    _onTap = widget.onTap ?? _launchURL;
   }
 
   void _getUrlData() async {
@@ -150,25 +162,23 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         widget.imageLoaderColor ?? Theme.of(context).accentColor;
     _initialize();
 
-    if (_urlPreviewData != null) {
-      if (_isVisible) {
-        return Container(
-          padding: const EdgeInsets.all(10),
-          height: _previewHeight,
-          child: Stack(children: [
-            GestureDetector(
-              onTap: _launchURL,
-              child: _buildPreviewCard(context),
-            ),
-            _buildClosablePreview(),
-          ]),
-        );
-      } else {
-        return SizedBox();
-      }
-    } else {
+    if (_urlPreviewData == null || !_isVisible) {
       return SizedBox();
     }
+
+    return Container(
+      padding: _previewContainerPadding,
+      height: _previewHeight,
+      child: Stack(
+        children: [
+          GestureDetector(
+            onTap: _onTap,
+            child: _buildPreviewCard(context),
+          ),
+          _buildClosablePreview(),
+        ],
+      ),
+    );
   }
 
   Widget _buildClosablePreview() {
@@ -204,7 +214,6 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                 0.25,
             child: PreviewImage(
               _urlPreviewData['og:image'],
-              _previewHeight,
               _imageLoaderColor,
             ),
           ),

@@ -18,7 +18,7 @@ Add simple_url_preview to pubspec.yaml, and hit command 'flutter pub get'
 ```yaml
 dependencies:
   ...
-  simple_url_preview: ^0.1.11
+  simple_url_preview: ^1.0.0
 ```
 
 #### 1) **Simple use:**
@@ -28,11 +28,12 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 2) **Override preview height.(Default and minimum possible height is 150):**
+#### 2) **Override preview height, padding.(Default and minimum possible height is 130):**
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
   previewHeight: 200,
+  previewContainerPadding: EdgeInsets.all(10),
 ),
 ```
 
@@ -68,6 +69,17 @@ SimpleUrlPreview(
   titleLines: 1,
   descriptionLines: 2,
   imageLoaderColor: Colors.white,
+),
+```
+
+#### 6) **Override onTap callback of the URL preview:**
+
+By Default, will open URL in default browser.
+
+```dart
+SimpleUrlPreview(
+  url: 'https://pub.dev/',
+  onTap: () => print('Hello Flutter URL Preview'),
 ),
 ```
 
