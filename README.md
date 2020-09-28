@@ -1,4 +1,7 @@
-# simple_url_preview
+# simple_url_preview 
+[![likes](https://badges.bar/simple_url_preview/likes)](https://pub.dev/packages/simple_url_preview/score)
+[![pub points](https://badges.bar/simple_url_preview/pub%20points)](https://pub.dev/packages/simple_url_preview/score)
+[![popularity](https://badges.bar/simple_url_preview/popularity)](https://pub.dev/packages/simple_url_preview/score)
 
 Flutter package to show url preview
 
