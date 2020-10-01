@@ -15,7 +15,7 @@ class PreviewImage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: CachedNetworkImage(
           imageUrl: _image,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           height: (MediaQuery.of(context).size.width -
                   MediaQuery.of(context).padding.top -
                   MediaQuery.of(context).padding.bottom) *
