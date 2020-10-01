@@ -1,9 +1,12 @@
 library simple_url_preview;
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_url_preview/widgets/preview_description.dart';
 import 'package:simple_url_preview/widgets/preview_image.dart';
 import 'package:simple_url_preview/widgets/preview_site_name.dart';
@@ -99,9 +102,19 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   }
 
   void _getUrlData() async {
+    final _pref = await SharedPreferences.getInstance();
     if (!isURL(widget.url)) {
       setState(() {
         _urlPreviewData = null;
+      });
+      return;
+    }
+
+    final cachedData = _pref.getString(widget.url);
+    if (cachedData != null) {
+      setState(() {
+        _urlPreviewData = jsonDecode(cachedData);
+        _isVisible = true;
       });
       return;
     }
@@ -129,6 +142,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     }
 
     if (data != null && data.isNotEmpty) {
+      _pref.setString(widget.url, jsonEncode(data));
       setState(() {
         _urlPreviewData = data;
         _isVisible = true;
