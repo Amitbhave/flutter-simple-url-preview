@@ -11,7 +11,7 @@ import 'package:simple_url_preview/widgets/preview_description.dart';
 import 'package:simple_url_preview/widgets/preview_image.dart';
 import 'package:simple_url_preview/widgets/preview_site_name.dart';
 import 'package:simple_url_preview/widgets/preview_title.dart';
-import 'package:string_validator/string_validator.dart';
+import 'package:string_validator/string_validator.dart'; 
 import 'package:url_launcher/url_launcher.dart';
 
 /// Provides URL preview
@@ -116,7 +116,6 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         _urlPreviewData = jsonDecode(cachedData);
         _isVisible = true;
       });
-      return;
     }
 
     var response = await get(widget.url);
