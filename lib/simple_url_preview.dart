@@ -1,9 +1,9 @@
 library simple_url_preview;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_store/flutter_cache_store.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
-import 'package:http/http.dart';
 import 'package:simple_url_preview/widgets/preview_description.dart';
 import 'package:simple_url_preview/widgets/preview_image.dart';
 import 'package:simple_url_preview/widgets/preview_site_name.dart';
@@ -106,18 +106,21 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
       return;
     }
 
-    var response = await get(widget.url);
-    if (response.statusCode != 200) {
+    final store = await CacheStore.getInstance();
+    var response = await store.getFile(widget.url).catchError((error) {
+      return null;
+    });
+    if (response == null) {
       if (!this.mounted) {
         return;
       }
-
       setState(() {
         _urlPreviewData = null;
       });
+      return;
     }
 
-    var document = parse(response.body);
+    var document = parse(await response.readAsString());
     Map data = {};
     _extractOGData(document, data, 'og:title');
     _extractOGData(document, data, 'og:description');

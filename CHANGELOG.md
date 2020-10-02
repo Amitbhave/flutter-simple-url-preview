@@ -1,3 +1,8 @@
+## [1.1.0] - 02/10/2020.
+
+* Cache http response using CacheStore
+* URL preview image set to cover
+
 ## [1.0.0] - 18/09/2020.
 
 * Add configurable onTap callback for onTap of URL preview
