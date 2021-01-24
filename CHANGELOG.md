@@ -1,3 +1,7 @@
+## [1.1.1] - 24/01/2021.
+
+* Fix description lines overflow
+
 ## [1.1.0] - 02/10/2020.
 
 * Cache http response using CacheStore

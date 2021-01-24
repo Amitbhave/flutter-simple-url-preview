@@ -12,13 +12,19 @@ class PreviewDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (_description != null) {
-      return Text(
-        _description,
-        textAlign: TextAlign.left,
-        maxLines: _descriptionLines,
-        style: TextStyle(
-          fontSize: 14,
-          color: _textColor,
+      return Flexible(
+        child: Container(
+          child: Text(
+            _description,
+            overflow: TextOverflow.clip,
+            textAlign: TextAlign.left,
+            maxLines: _descriptionLines,
+            softWrap: true,
+            style: TextStyle(
+              fontSize: 14,
+              color: _textColor,
+            ),
+          ),
         ),
       );
     } else {
