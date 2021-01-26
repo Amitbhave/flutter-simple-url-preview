@@ -54,7 +54,7 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 4) **Override title and description style:**
+#### 4) **Override title, description, and site style:**
 
 Default titleStyle = TextStyle(
   fontWeight: FontWeight.bold,
