@@ -41,7 +41,7 @@ class SimpleUrlPreview extends StatefulWidget {
   final int descriptionLines;
 
   /// Style of site title
-  final TextStyle siteStyle;
+  final TextStyle siteNameStyle;
 
   /// Color for loader icon shown, till image loads
   final Color imageLoaderColor;
@@ -62,7 +62,7 @@ class SimpleUrlPreview extends StatefulWidget {
     this.titleLines = 2,
     this.descriptionStyle,
     this.descriptionLines = 3,
-    this.siteStyle,
+    this.siteNameStyle,
     this.imageLoaderColor,
     this.previewContainerPadding,
     this.onTap,
@@ -88,7 +88,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   int _titleLines;
   TextStyle _descriptionStyle;
   int _descriptionLines;
-  TextStyle _siteStyle;
+  TextStyle _siteNameStyle;
   Color _imageLoaderColor;
   EdgeInsetsGeometry _previewContainerPadding;
   VoidCallback _onTap;
@@ -111,7 +111,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _descriptionLines = widget.descriptionLines;
     _titleStyle = widget.titleStyle;
     _titleLines = widget.titleLines;
-    _siteStyle = widget.siteStyle;
+    _siteNameStyle = widget.siteNameStyle;
     _previewContainerPadding = widget.previewContainerPadding;
     _onTap = widget.onTap ?? _launchURL;
   }
@@ -267,12 +267,12 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                   ),
                   PreviewSiteName(
                     _urlPreviewData['og:site_name'],
-                    _siteStyle == null
+                    _siteNameStyle == null
                         ? TextStyle(
                             fontSize: 14,
                             color: _textColor,
                           )
-                        : _siteStyle,
+                        : _siteNameStyle,
                   ),
                 ],
               ),

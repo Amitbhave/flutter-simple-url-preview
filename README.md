@@ -67,7 +67,7 @@ Default descriptionStyle = TextStyle(
   color: textColor
 )
 
-Default siteStyle = TextStyle(
+Default siteNameStyle = TextStyle(
   fontSize: 14,
   color: textColor
 )
@@ -77,7 +77,7 @@ SimpleUrlPreview(
   url: 'https://pub.dev/',
   titleStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
   descriptionStyle: TextStyle(fontSize: 12),
-  siteStyle: TextStyle(fontSize: 12, color: Colors.blueAccent),
+  siteNameStyle: TextStyle(fontSize: 12, color: Colors.blueAccent),
 ),
 ```
 
