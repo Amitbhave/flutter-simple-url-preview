@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 /// Shows site name of URL
 class PreviewSiteName extends StatelessWidget {
   final String _siteName;
-  final Color _textColor;
+  final TextStyle _textStyle;
 
-  PreviewSiteName(this._siteName, this._textColor);
+  PreviewSiteName(this._siteName, this._textStyle);
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +13,7 @@ class PreviewSiteName extends StatelessWidget {
       return Text(
         _siteName,
         textAlign: TextAlign.left,
-        style: TextStyle(
-          fontSize: 14,
-          color: _textColor,
-        ),
+        style: _textStyle,
       );
     } else {
       return SizedBox();
