@@ -62,7 +62,7 @@ Default titleStyle = TextStyle(
   color: textColor
 )
 
-Default descriptionTyle = TextStyle(
+Default descriptionStyle = TextStyle(
   fontSize: 14,
   color: textColor
 )
