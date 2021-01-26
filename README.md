@@ -64,7 +64,12 @@ Default titleStyle = TextStyle(
 
 Default descriptionTyle = TextStyle(
   fontSize: 14,
-  color: _textColor
+  color: textColor
+)
+
+Default siteStyle = TextStyle(
+  fontSize: 14,
+  color: textColor
 )
 
 ```dart
@@ -72,7 +77,8 @@ SimpleUrlPreview(
   url: 'https://pub.dev/',
   isClosable: true,
   titleStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-  descriptionStyle: TextStyle(fontSize: 12)
+  descriptionStyle: TextStyle(fontSize: 12),
+  siteStyle: TextStyle(fontSize: 12, color: Colors.blueAccent),
 ),
 ```
 
