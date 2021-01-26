@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 /// Shows title of URL
 class PreviewTitle extends StatelessWidget {
   final String _title;
-  final Color _textColor;
   final int _titleLines;
+  final TextStyle _titleStyle;
 
-  PreviewTitle(this._title, this._textColor, this._titleLines);
+  PreviewTitle(this._title, this._titleStyle, this._titleLines);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +16,7 @@ class PreviewTitle extends StatelessWidget {
         textAlign: TextAlign.left,
         overflow: TextOverflow.ellipsis,
         maxLines: _titleLines,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          color: _textColor,
-        ),
+        style: _titleStyle,
       );
     } else {
       return SizedBox();

@@ -54,7 +54,29 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 4) **If you want closable preview (Click on x to close the preview.):**
+#### 4) **Override title and description style:**
+
+Default titleStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+  color: textColor
+)
+
+Default descriptionTyle = TextStyle(
+  fontSize: 14,
+  color: _textColor
+)
+
+```dart
+SimpleUrlPreview(
+  url: 'https://pub.dev/',
+  isClosable: true,
+  titleStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+  descriptionStyle: TextStyle(fontSize: 12)
+),
+```
+
+#### 5) **If you want closable preview (Click on x to close the preview.):**
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
@@ -62,7 +84,7 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 5) **Override image loader color and title and description lines:**
+#### 6) **Override image loader color and title and description lines:**
 
 Default and maximum title lines = 2 and description lines = 3.
 
@@ -75,7 +97,7 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 6) **Override onTap callback of the URL preview:**
+#### 7) **Override onTap callback of the URL preview:**
 
 By Default, will open URL in default browser.
 

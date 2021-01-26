@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 /// Shows description of URL
 class PreviewDescription extends StatelessWidget {
   final String _description;
-  final Color _textColor;
+  final TextStyle _textStyle;
   final int _descriptionLines;
 
   PreviewDescription(
-      this._description, this._textColor, this._descriptionLines);
+      this._description, this._textStyle, this._descriptionLines);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,7 @@ class PreviewDescription extends StatelessWidget {
             textAlign: TextAlign.left,
             maxLines: _descriptionLines,
             softWrap: true,
-            style: TextStyle(
-              fontSize: 14,
-              color: _textColor,
-            ),
+            style: _textStyle,
           ),
         ),
       );

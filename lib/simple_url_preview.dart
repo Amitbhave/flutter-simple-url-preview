@@ -22,14 +22,20 @@ class SimpleUrlPreview extends StatefulWidget {
   /// Whether or not to show close button for the preview
   final bool isClosable;
 
-  /// Text color
+  /// Text color. Ignored for any item where a style is specified
   final Color textColor;
 
   /// Background color
   final Color bgColor;
 
+  /// Style of Title.
+  final TextStyle titleStyle;
+
   /// Number of lines for Title. (Max possible lines = 2)
   final int titleLines;
+
+  /// Style of Description
+  final TextStyle descriptionStyle;
 
   /// Number of lines for Description. (Max possible lines = 3)
   final int descriptionLines;
@@ -49,7 +55,9 @@ class SimpleUrlPreview extends StatefulWidget {
     this.isClosable,
     this.textColor,
     this.bgColor,
+    this.titleStyle,
     this.titleLines = 2,
+    this.descriptionStyle,
     this.descriptionLines = 3,
     this.imageLoaderColor,
     this.previewContainerPadding,
@@ -72,7 +80,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   double _previewHeight;
   Color _textColor;
   Color _bgColor;
+  TextStyle _titleStyle;
   int _titleLines;
+  TextStyle _descriptionStyle;
   int _descriptionLines;
   Color _imageLoaderColor;
   EdgeInsetsGeometry _previewContainerPadding;
@@ -92,7 +102,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
 
   void _initialize() {
     _previewHeight = widget.previewHeight;
+    _descriptionStyle = widget.descriptionStyle;
     _descriptionLines = widget.descriptionLines;
+    _titleStyle = widget.titleStyle;
     _titleLines = widget.titleLines;
     _previewContainerPadding = widget.previewContainerPadding;
     _onTap = widget.onTap ?? _launchURL;
@@ -228,13 +240,23 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   PreviewTitle(
-                    _urlPreviewData['og:title'],
-                    _textColor,
-                    _titleLines,
-                  ),
+                      _urlPreviewData['og:title'],
+                      _titleStyle == null
+                          ? TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: _textColor,
+                            )
+                          : _titleStyle,
+                      _titleLines),
                   PreviewDescription(
                     _urlPreviewData['og:description'],
-                    _textColor,
+                    _descriptionStyle == null
+                        ? TextStyle(
+                            fontSize: 14,
+                            color: _textColor,
+                          )
+                        : _descriptionStyle,
                     _descriptionLines,
                   ),
                   PreviewSiteName(
