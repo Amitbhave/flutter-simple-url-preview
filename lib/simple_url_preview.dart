@@ -22,9 +22,6 @@ class SimpleUrlPreview extends StatefulWidget {
   /// Whether or not to show close button for the preview
   final bool isClosable;
 
-  /// Text color. Ignored for any item where a style is specified
-  final Color textColor;
-
   /// Background color
   final Color bgColor;
 
@@ -56,7 +53,6 @@ class SimpleUrlPreview extends StatefulWidget {
     @required this.url,
     this.previewHeight = 130.0,
     this.isClosable,
-    this.textColor,
     this.bgColor,
     this.titleStyle,
     this.titleLines = 2,
@@ -82,7 +78,6 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   bool _isVisible = true;
   bool _isClosable;
   double _previewHeight;
-  Color _textColor;
   Color _bgColor;
   TextStyle _titleStyle;
   int _titleLines;
@@ -177,7 +172,6 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   @override
   Widget build(BuildContext context) {
     _isClosable = widget.isClosable ?? false;
-    _textColor = widget.textColor ?? Theme.of(context).accentColor;
     _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
     _imageLoaderColor =
         widget.imageLoaderColor ?? Theme.of(context).accentColor;
@@ -209,7 +203,6 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
             child: IconButton(
               icon: Icon(
                 Icons.clear,
-                color: _textColor,
               ),
               onPressed: () {
                 setState(() {
@@ -251,7 +244,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                           ? TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
-                              color: _textColor,
+                              color: Theme.of(context).accentColor,
                             )
                           : _titleStyle,
                       _titleLines),
@@ -260,7 +253,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     _descriptionStyle == null
                         ? TextStyle(
                             fontSize: 14,
-                            color: _textColor,
+                            color: Theme.of(context).accentColor,
                           )
                         : _descriptionStyle,
                     _descriptionLines,
@@ -270,7 +263,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     _siteNameStyle == null
                         ? TextStyle(
                             fontSize: 14,
-                            color: _textColor,
+                            color: Theme.of(context).accentColor,
                           )
                         : _siteNameStyle,
                   ),
