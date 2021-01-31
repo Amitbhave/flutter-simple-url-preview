@@ -50,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           SimpleUrlPreview(
             url: _url,
-            textColor: Colors.white,
             bgColor: Colors.red,
             isClosable: true,
             titleLines: 2,
