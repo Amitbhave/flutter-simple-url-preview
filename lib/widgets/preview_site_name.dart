@@ -9,14 +9,14 @@ class PreviewSiteName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_siteName != null) {
-      return Text(
-        _siteName,
-        textAlign: TextAlign.left,
-        style: _textStyle,
-      );
-    } else {
+    if (_siteName == null) {
       return SizedBox();
     }
+
+    return Text(
+      _siteName,
+      textAlign: TextAlign.left,
+      style: _textStyle,
+    );
   }
 }

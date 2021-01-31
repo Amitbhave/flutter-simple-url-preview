@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           SimpleUrlPreview(
             url: _url,
-            bgColor: Colors.red,
+            bgColor: Theme.of(context).accentColor,
             isClosable: true,
             titleLines: 2,
             descriptionLines: 3,
@@ -58,6 +58,19 @@ class _MyHomePageState extends State<MyHomePage> {
             previewHeight: 150,
             previewContainerPadding: EdgeInsets.all(10),
             onTap: () => print('Hello Flutter URL Preview'),
+            titleStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
+            descriptionStyle: TextStyle(
+              fontSize: 14,
+              color: Theme.of(context).primaryColor,
+            ),
+            siteNameStyle: TextStyle(
+              fontSize: 14,
+              color: Theme.of(context).primaryColor,
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(20),

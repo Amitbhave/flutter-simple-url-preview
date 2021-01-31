@@ -21,7 +21,7 @@ Add simple_url_preview to pubspec.yaml, and hit command 'flutter pub get'
 ```yaml
 dependencies:
   ...
-  simple_url_preview: ^1.1.1
+  simple_url_preview: ^2.0.0
 ```
 
 #### 1) **Simple use:**
@@ -40,16 +40,13 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 3) **Override text color and background color:**
-
-Default textColor = Theme.of(context).accentColor
+#### 3) **Override background color:**
 
 Default bgColor = Theme.of(context).primaryColor
 
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
-  textColor: Colors.white,
   bgColor: Colors.red,
 ),
 ```
@@ -59,25 +56,35 @@ SimpleUrlPreview(
 Default titleStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 16,
-  color: textColor
+  color: Theme.of(context).accentColor
 )
 
 Default descriptionStyle = TextStyle(
   fontSize: 14,
-  color: textColor
+  color: Theme.of(context).accentColor
 )
 
 Default siteNameStyle = TextStyle(
   fontSize: 14,
-  color: textColor
+  color: Theme.of(context).accentColor
 )
 
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
-  titleStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-  descriptionStyle: TextStyle(fontSize: 12),
-  siteNameStyle: TextStyle(fontSize: 12, color: Colors.blueAccent),
+  titleStyle: TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.red,
+  ),
+  descriptionStyle: TextStyle(
+    fontSize: 14,
+    color: Theme.of(context).primaryColor,
+  ),
+  siteNameStyle: TextStyle(
+    fontSize: 14,
+    color: Theme.of(context).primaryColor,
+  ),
 ),
 ```
 

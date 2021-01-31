@@ -10,16 +10,16 @@ class PreviewTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_title != null) {
-      return Text(
-        _title,
-        textAlign: TextAlign.left,
-        overflow: TextOverflow.ellipsis,
-        maxLines: _titleLines,
-        style: _titleStyle,
-      );
-    } else {
+    if (_title == null) {
       return SizedBox();
     }
+
+    return Text(
+      _title,
+      textAlign: TextAlign.left,
+      overflow: TextOverflow.ellipsis,
+      maxLines: _titleLines,
+      style: _titleStyle,
+    );
   }
 }

@@ -11,21 +11,21 @@ class PreviewDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_description != null) {
-      return Flexible(
-        child: Container(
-          child: Text(
-            _description,
-            overflow: TextOverflow.clip,
-            textAlign: TextAlign.left,
-            maxLines: _descriptionLines,
-            softWrap: true,
-            style: _textStyle,
-          ),
-        ),
-      );
-    } else {
+    if (_description == null) {
       return SizedBox();
     }
+
+    return Flexible(
+      child: Container(
+        child: Text(
+          _description,
+          overflow: TextOverflow.clip,
+          textAlign: TextAlign.left,
+          maxLines: _descriptionLines,
+          softWrap: true,
+          style: _textStyle,
+        ),
+      ),
+    );
   }
 }

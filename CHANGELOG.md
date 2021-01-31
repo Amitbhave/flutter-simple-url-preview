@@ -1,3 +1,8 @@
+## [2.0.0] - 31/01/2021.
+
+* Add configuration options: testStyle, descriptionStyle and siteNameStyle.
+* Remove textColor attribute as no longer needed.
+
 ## [1.1.1] - 24/01/2021.
 
 * Fix description lines overflow
