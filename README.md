@@ -1,4 +1,7 @@
-# simple_url_preview
+# simple_url_preview 
+[![likes](https://badges.bar/simple_url_preview/likes)](https://pub.dev/packages/simple_url_preview/score)
+[![pub points](https://badges.bar/simple_url_preview/pub%20points)](https://pub.dev/packages/simple_url_preview/score)
+[![popularity](https://badges.bar/simple_url_preview/popularity)](https://pub.dev/packages/simple_url_preview/score)
 
 Flutter package to show url preview
 
@@ -18,7 +21,7 @@ Add simple_url_preview to pubspec.yaml, and hit command 'flutter pub get'
 ```yaml
 dependencies:
   ...
-  simple_url_preview: ^0.1.10
+  simple_url_preview: ^2.0.0
 ```
 
 #### 1) **Simple use:**
@@ -28,29 +31,64 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 2) **Override preview height.(Default and minimum possible height is 150):**
+#### 2) **Override preview height, padding.(Default and minimum possible height is 130):**
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
   previewHeight: 200,
+  previewContainerPadding: EdgeInsets.all(10),
 ),
 ```
 
-#### 3) **Override text color and background color:**
-
-Default textColor = Theme.of(context).accentColor
+#### 3) **Override background color:**
 
 Default bgColor = Theme.of(context).primaryColor
 
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
-  textColor: Colors.white,
   bgColor: Colors.red,
 ),
 ```
 
-#### 4) **If you want closable preview (Click on x to close the preview.):**
+#### 4) **Override title, description, and site style:**
+
+Default titleStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+  color: Theme.of(context).accentColor
+)
+
+Default descriptionStyle = TextStyle(
+  fontSize: 14,
+  color: Theme.of(context).accentColor
+)
+
+Default siteNameStyle = TextStyle(
+  fontSize: 14,
+  color: Theme.of(context).accentColor
+)
+
+```dart
+SimpleUrlPreview(
+  url: 'https://pub.dev/',
+  titleStyle: TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.red,
+  ),
+  descriptionStyle: TextStyle(
+    fontSize: 14,
+    color: Theme.of(context).primaryColor,
+  ),
+  siteNameStyle: TextStyle(
+    fontSize: 14,
+    color: Theme.of(context).primaryColor,
+  ),
+),
+```
+
+#### 5) **If you want closable preview (Click on x to close the preview.):**
 ```dart
 SimpleUrlPreview(
   url: 'https://pub.dev/',
@@ -58,7 +96,7 @@ SimpleUrlPreview(
 ),
 ```
 
-#### 5) **Override image loader color and title and description lines:**
+#### 6) **Override image loader color and title and description lines:**
 
 Default and maximum title lines = 2 and description lines = 3.
 
@@ -68,6 +106,17 @@ SimpleUrlPreview(
   titleLines: 1,
   descriptionLines: 2,
   imageLoaderColor: Colors.white,
+),
+```
+
+#### 7) **Override onTap callback of the URL preview:**
+
+By Default, will open URL in default browser.
+
+```dart
+SimpleUrlPreview(
+  url: 'https://pub.dev/',
+  onTap: () => print('Hello Flutter URL Preview'),
 ),
 ```
 

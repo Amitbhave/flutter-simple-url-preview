@@ -1,3 +1,30 @@
+## [2.0.0] - 31/01/2021.
+
+* Add configuration options: testStyle, descriptionStyle and siteNameStyle.
+* Remove textColor attribute as no longer needed.
+
+## [1.1.1] - 24/01/2021.
+
+* Fix description lines overflow
+
+## [1.1.0] - 02/10/2020.
+
+* Cache http response using CacheStore
+* URL preview image set to cover
+
+## [1.0.0] - 18/09/2020.
+
+* Add configurable onTap callback for onTap of URL preview
+* Make URL preview container padding configurable
+* Make image perfect square
+* Minimum height of this package is 130 now(after removing default padding)
+* Refactor code
+
+## [0.1.11] - 20/08/2020.
+
+* Refactor code
+* Add color for error widget for Image
+
 ## [0.1.10] - 28/07/2020.
 
 * Fix Theme.of() use in initState()
