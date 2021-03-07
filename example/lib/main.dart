@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -31,9 +31,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _url = "";
+  String _url = '';
 
-  _onUrlChanged(String updatedUrl) {
+  void _onUrlChanged(String updatedUrl) {
     setState(() {
       _url = updatedUrl;
     });
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               imageLoaderColor: Colors.white,
             ),
             TextField(
-              onChanged: (newValue) => _onUrlChanged(newValue),
+              onChanged: _onUrlChanged,
             ),
           ],
         ),

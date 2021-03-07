@@ -1,10 +1,10 @@
 library simple_url_preview;
 
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
-import 'package:simple_url_preview/widgets/empty_container.dart';
 import 'package:simple_url_preview/widgets/preview_description.dart';
 import 'package:simple_url_preview/widgets/preview_image.dart';
 import 'package:simple_url_preview/widgets/preview_site_name.dart';
@@ -14,32 +14,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// Provides URL preview
 class SimpleUrlPreview extends StatefulWidget {
-  /// URL for which preview is to be shown
-  final String url;
-
-  /// Height of the preview
-  final double previewHeight;
-
-  /// Whether or not to show close button for the preview
-  final bool isClosable;
-
-  /// Text color
-  final Color textColor;
-
-  /// Background color
-  final Color bgColor;
-
-  /// Number of lines for Title. (Max possible lines = 2)
-  final int titleLines;
-
-  /// Number of lines for Description. (Max possible lines = 3)
-  final int descriptionLines;
-
-  /// Color for loader icon shown, till image loads
-  final Color imageLoaderColor;
-
   SimpleUrlPreview({
-    @required this.url,
+    required this.url,
     this.previewHeight,
     this.isClosable,
     this.textColor,
@@ -49,20 +25,44 @@ class SimpleUrlPreview extends StatefulWidget {
     this.imageLoaderColor,
   });
 
+  /// URL for which preview is to be shown
+  final String url;
+
+  /// Height of the preview
+  final double? previewHeight;
+
+  /// Whether or not to show close button for the preview
+  final bool? isClosable;
+
+  /// Text color
+  final Color? textColor;
+
+  /// Background color
+  final Color? bgColor;
+
+  /// Number of lines for Title. (Max possible lines = 2)
+  final int? titleLines;
+
+  /// Number of lines for Description. (Max possible lines = 3)
+  final int? descriptionLines;
+
+  /// Color for loader icon shown, till image loads
+  final Color? imageLoaderColor;
+
   @override
   _SimpleUrlPreviewState createState() => _SimpleUrlPreviewState();
 }
 
 class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
-  Map _urlPreviewData;
   bool _isVisible = true;
-  bool _isClosable;
-  double _previewHeight;
-  Color _textColor;
-  Color _bgColor;
-  int _titleLines;
-  int _descriptionLines;
-  Color _imageLoaderColor;
+  Map? _urlPreviewData;
+  double? _previewHeight;
+  Color? _textColor;
+  Color? _bgColor;
+  int? _titleLines;
+  int? _descriptionLines;
+  Color? _imageLoaderColor;
+  late bool _isClosable;
 
   @override
   void initState() {
@@ -77,7 +77,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   }
 
   void _initializePreviewHeight() {
-    if (widget.previewHeight == null || widget.previewHeight < 150) {
+    if (widget.previewHeight == null || widget.previewHeight! < 150) {
       _previewHeight = 150;
     } else {
       _previewHeight = widget.previewHeight;
@@ -86,7 +86,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
 
   void _initializeDescriptionLines() {
     if (widget.descriptionLines == null ||
-        (widget.descriptionLines > 3 || widget.descriptionLines < 1)) {
+        (widget.descriptionLines! > 3 || widget.descriptionLines! < 1)) {
       _descriptionLines = 3;
     } else {
       _descriptionLines = widget.descriptionLines;
@@ -95,7 +95,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
 
   void _initializeTitleLines() {
     if (widget.titleLines == null ||
-        (widget.titleLines > 2 || widget.titleLines < 1)) {
+        (widget.titleLines! > 2 || widget.titleLines! < 1)) {
       _titleLines = 2;
     } else {
       _titleLines = widget.titleLines;
@@ -110,7 +110,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
       return;
     }
 
-    var response = await get(widget.url);
+    final response = await get(Uri.parse(widget.url));
     if (response.statusCode != 200) {
       if (!this.mounted) {
         return;
@@ -132,7 +132,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
       return;
     }
 
-    if (data != null && data.isNotEmpty) {
+    if (data.isNotEmpty) {
       setState(() {
         _urlPreviewData = data;
         _isVisible = true;
@@ -141,9 +141,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   }
 
   void _extractOGData(Document document, Map data, String parameter) {
-    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere(
-        (meta) => meta.attributes['property'] == parameter,
-        orElse: () => null);
+    final titleMetaTag = document
+        .getElementsByTagName("meta")
+        .firstWhereOrNull((meta) => meta.attributes['property'] == parameter);
     if (titleMetaTag != null) {
       data[parameter] = titleMetaTag.attributes['content'];
     }
@@ -182,10 +182,10 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
           ]),
         );
       } else {
-        return EmptyContainer();
+        return const SizedBox();
       }
     } else {
-      return EmptyContainer();
+      return const SizedBox();
     }
   }
 
@@ -205,7 +205,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
               },
             ),
           )
-        : EmptyContainer();
+        : const SizedBox();
   }
 
   Card _buildPreviewCard(BuildContext context) {
@@ -221,7 +221,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     MediaQuery.of(context).padding.right) *
                 0.25,
             child: PreviewImage(
-              _urlPreviewData['og:image'],
+              _urlPreviewData!['og:image'],
               _previewHeight,
               _imageLoaderColor,
             ),
@@ -234,17 +234,17 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   PreviewTitle(
-                    _urlPreviewData['og:title'],
+                    _urlPreviewData!['og:title'],
                     _textColor,
                     _titleLines,
                   ),
                   PreviewDescription(
-                    _urlPreviewData['og:description'],
+                    _urlPreviewData!['og:description'],
                     _textColor,
                     _descriptionLines,
                   ),
                   PreviewSiteName(
-                    _urlPreviewData['og:site_name'],
+                    _urlPreviewData!['og:site_name'],
                     _textColor,
                   ),
                 ],

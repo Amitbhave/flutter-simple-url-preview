@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:simple_url_preview/widgets/empty_container.dart';
 
 /// Shows title of URL
 class PreviewTitle extends StatelessWidget {
-  final String _title;
-  final Color _textColor;
-  final int _titleLines;
+  PreviewTitle(
+    this._title,
+    this._textColor,
+    this._titleLines,
+  );
 
-  PreviewTitle(this._title, this._textColor, this._titleLines);
+  final String? _title;
+  final Color? _textColor;
+  final int? _titleLines;
 
   @override
   Widget build(BuildContext context) {
     if (_title != null) {
       return Text(
-        _title,
+        _title!,
         textAlign: TextAlign.left,
         overflow: TextOverflow.ellipsis,
         maxLines: _titleLines,
@@ -24,7 +27,7 @@ class PreviewTitle extends StatelessWidget {
         ),
       );
     } else {
-      return EmptyContainer();
+      return const SizedBox();
     }
   }
 }

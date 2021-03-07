@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:simple_url_preview/widgets/empty_container.dart';
 
 /// Shows site name of URL
 class PreviewSiteName extends StatelessWidget {
-  final String _siteName;
-  final Color _textColor;
-
   PreviewSiteName(this._siteName, this._textColor);
+
+  final String? _siteName;
+  final Color? _textColor;
 
   @override
   Widget build(BuildContext context) {
     if (_siteName != null) {
       return Text(
-        _siteName,
+        _siteName!,
         textAlign: TextAlign.left,
         style: TextStyle(
           fontSize: 14,
@@ -20,7 +19,7 @@ class PreviewSiteName extends StatelessWidget {
         ),
       );
     } else {
-      return EmptyContainer();
+      return const SizedBox();
     }
   }
 }
