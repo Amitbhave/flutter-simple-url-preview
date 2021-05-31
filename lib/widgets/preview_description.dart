@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 /// Shows description of URL
 class PreviewDescription extends StatelessWidget {
-  final String _description;
-  final TextStyle _textStyle;
-  final int _descriptionLines;
+  final String? _description;
+  final TextStyle? _textStyle;
+  final int? _descriptionLines;
 
   PreviewDescription(
       this._description, this._textStyle, this._descriptionLines);
@@ -18,7 +18,7 @@ class PreviewDescription extends StatelessWidget {
     return Flexible(
       child: Container(
         child: Text(
-          _description,
+          _description!,
           overflow: TextOverflow.clip,
           textAlign: TextAlign.left,
           maxLines: _descriptionLines,

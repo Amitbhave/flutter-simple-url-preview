@@ -20,37 +20,37 @@ class SimpleUrlPreview extends StatefulWidget {
   final double previewHeight;
 
   /// Whether or not to show close button for the preview
-  final bool isClosable;
+  final bool? isClosable;
 
   /// Background color
-  final Color bgColor;
+  final Color? bgColor;
 
   /// Style of Title.
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
 
   /// Number of lines for Title. (Max possible lines = 2)
   final int titleLines;
 
   /// Style of Description
-  final TextStyle descriptionStyle;
+  final TextStyle? descriptionStyle;
 
   /// Number of lines for Description. (Max possible lines = 3)
   final int descriptionLines;
 
   /// Style of site title
-  final TextStyle siteNameStyle;
+  final TextStyle? siteNameStyle;
 
   /// Color for loader icon shown, till image loads
-  final Color imageLoaderColor;
+  final Color? imageLoaderColor;
 
   /// Container padding
-  final EdgeInsetsGeometry previewContainerPadding;
+  final EdgeInsetsGeometry? previewContainerPadding;
 
   /// onTap URL preview, by default opens URL in default browser
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   SimpleUrlPreview({
-    @required this.url,
+    required this.url,
     this.previewHeight = 130.0,
     this.isClosable,
     this.bgColor,
@@ -74,19 +74,19 @@ class SimpleUrlPreview extends StatefulWidget {
 }
 
 class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
-  Map _urlPreviewData;
+  Map? _urlPreviewData;
   bool _isVisible = true;
-  bool _isClosable;
-  double _previewHeight;
-  Color _bgColor;
-  TextStyle _titleStyle;
-  int _titleLines;
-  TextStyle _descriptionStyle;
-  int _descriptionLines;
-  TextStyle _siteNameStyle;
-  Color _imageLoaderColor;
-  EdgeInsetsGeometry _previewContainerPadding;
-  VoidCallback _onTap;
+  late bool _isClosable;
+  double? _previewHeight;
+  Color? _bgColor;
+  TextStyle? _titleStyle;
+  int? _titleLines;
+  TextStyle? _descriptionStyle;
+  int? _descriptionLines;
+  TextStyle? _siteNameStyle;
+  Color? _imageLoaderColor;
+  EdgeInsetsGeometry? _previewContainerPadding;
+  VoidCallback? _onTap;
 
   @override
   void initState() {
@@ -140,7 +140,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
       return;
     }
 
-    if (data != null && data.isNotEmpty) {
+    if (data.isNotEmpty) {
       setState(() {
         _urlPreviewData = data;
         _isVisible = true;
@@ -149,9 +149,9 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   }
 
   void _extractOGData(Document document, Map data, String parameter) {
-    var titleMetaTag = document.getElementsByTagName("meta")?.firstWhere(
-        (meta) => meta.attributes['property'] == parameter,
-        orElse: () => null);
+    var titleMetaTag = document
+        .getElementsByTagName("meta")
+        .firstWhereOrNull((meta) => meta.attributes['property'] == parameter);
     if (titleMetaTag != null) {
       data[parameter] = titleMetaTag.attributes['content'];
     }
@@ -223,7 +223,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     MediaQuery.of(context).padding.right) *
                 0.25,
             child: PreviewImage(
-              _urlPreviewData['og:image'],
+              _urlPreviewData!['og:image'],
               _imageLoaderColor,
             ),
           ),
@@ -235,7 +235,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   PreviewTitle(
-                      _urlPreviewData['og:title'],
+                      _urlPreviewData!['og:title'],
                       _titleStyle == null
                           ? TextStyle(
                               fontWeight: FontWeight.bold,
@@ -245,7 +245,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                           : _titleStyle,
                       _titleLines),
                   PreviewDescription(
-                    _urlPreviewData['og:description'],
+                    _urlPreviewData!['og:description'],
                     _descriptionStyle == null
                         ? TextStyle(
                             fontSize: 14,
@@ -255,7 +255,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     _descriptionLines,
                   ),
                   PreviewSiteName(
-                    _urlPreviewData['og:site_name'],
+                    _urlPreviewData!['og:site_name'],
                     _siteNameStyle == null
                         ? TextStyle(
                             fontSize: 14,
@@ -270,5 +270,14 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         ],
       ),
     );
+  }
+}
+
+extension FirstWhereOrNullExtension<E> on Iterable<E> {
+  E? firstWhereOrNull(bool Function(E) test) {
+    for (E element in this) {
+      if (test(element)) return element;
+    }
+    return null;
   }
 }
