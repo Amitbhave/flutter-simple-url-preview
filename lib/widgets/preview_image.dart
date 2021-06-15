@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 /// Shows image of URL
 class PreviewImage extends StatelessWidget {
-  final String _image;
-  final Color _imageLoaderColor;
+  final String? _image;
+  final Color? _imageLoaderColor;
 
   PreviewImage(this._image, this._imageLoaderColor);
 
@@ -14,7 +14,7 @@ class PreviewImage extends StatelessWidget {
       return Padding(
         padding: EdgeInsets.all(10),
         child: CachedNetworkImage(
-          imageUrl: _image,
+          imageUrl: _image!,
           fit: BoxFit.cover,
           height: (MediaQuery.of(context).size.width -
                   MediaQuery.of(context).padding.top -
