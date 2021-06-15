@@ -1,3 +1,7 @@
+## [3.0.1] - 15/06/2021.
+
+* Update readme
+
 ## [3.0.0] - 15/06/2021.
 
 * Migrated to null-safety!

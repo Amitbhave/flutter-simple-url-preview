@@ -9,7 +9,7 @@ Flutter package to show url preview
 
 ## Getting Started
 
-This shows url preview of a URL.
+This shows url preview of a URL. (Now migrated to null-safety).
 
 Currently only supports [Open Graph Protocol](https://www.ogp.me/)
 
@@ -21,7 +21,7 @@ Add simple_url_preview to pubspec.yaml, and hit command 'flutter pub get'
 ```yaml
 dependencies:
   ...
-  simple_url_preview: ^2.0.0
+  simple_url_preview: ^3.0.1
 ```
 
 #### 1) **Simple use:**
