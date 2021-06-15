@@ -1,3 +1,8 @@
+## [3.0.0] - 15/06/2021.
+
+* Migrated to null-safety!
+* CacheStore dependency removed as that package doesn't support null safety.
+
 ## [2.0.0] - 31/01/2021.
 
 * Add configuration options: testStyle, descriptionStyle and siteNameStyle.

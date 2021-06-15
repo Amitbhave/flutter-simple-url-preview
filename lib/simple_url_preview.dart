@@ -1,5 +1,6 @@
 library simple_url_preview;
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
@@ -270,14 +271,5 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
         ],
       ),
     );
-  }
-}
-
-extension FirstWhereOrNullExtension<E> on Iterable<E> {
-  E? firstWhereOrNull(bool Function(E) test) {
-    for (E element in this) {
-      if (test(element)) return element;
-    }
-    return null;
   }
 }
