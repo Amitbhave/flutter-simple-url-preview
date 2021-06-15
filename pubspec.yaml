@@ -1,19 +1,19 @@
 name: simple_url_preview
 description: Flutter package to show url preview. Custamizable height, background and text styles, as well as lines.
-version: 2.0.0
+version: 3.0.0
 homepage: https://github.com/Amitbhave/flutter-simple-url-preview
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  html: ^0.14.0+3
-  url_launcher: ^5.5.0
-  string_validator: ^0.1.4
-  cached_network_image: ^2.2.0+1
-  flutter_cache_store: ^0.7.2
+  http: ^0.13.3
+  html: ^0.15.0
+  url_launcher: ^6.0.6
+  string_validator: ^0.3.0
+  cached_network_image: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 /// Shows title of URL
 class PreviewTitle extends StatelessWidget {
-  final String _title;
-  final int _titleLines;
-  final TextStyle _titleStyle;
+  final String? _title;
+  final int? _titleLines;
+  final TextStyle? _titleStyle;
 
   PreviewTitle(this._title, this._titleStyle, this._titleLines);
 
@@ -15,7 +15,7 @@ class PreviewTitle extends StatelessWidget {
     }
 
     return Text(
-      _title,
+      _title!,
       textAlign: TextAlign.left,
       overflow: TextOverflow.ellipsis,
       maxLines: _titleLines,
