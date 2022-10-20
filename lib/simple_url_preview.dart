@@ -90,7 +90,6 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   int? _descriptionLines;
   TextStyle? _siteNameStyle;
   Color? _imageLoaderColor;
-  
   EdgeInsetsGeometry? _previewContainerPadding;
   double? _elevation;
   VoidCallback? _onTap;
