@@ -47,6 +47,9 @@ class SimpleUrlPreview extends StatefulWidget {
   /// Container padding
   final EdgeInsetsGeometry? previewContainerPadding;
 
+  ///elevation of card
+  final double? elevation;
+
   /// onTap URL preview, by default opens URL in default browser
   final VoidCallback? onTap;
 
@@ -62,6 +65,7 @@ class SimpleUrlPreview extends StatefulWidget {
     this.siteNameStyle,
     this.imageLoaderColor,
     this.previewContainerPadding,
+    this.elevation = 5,
     this.onTap,
   })  : assert(previewHeight >= 130.0,
             'The preview height should be greater than or equal to 130'),
@@ -87,6 +91,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
   TextStyle? _siteNameStyle;
   Color? _imageLoaderColor;
   EdgeInsetsGeometry? _previewContainerPadding;
+  double? _elevation;
   VoidCallback? _onTap;
 
   @override
@@ -109,6 +114,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _titleLines = widget.titleLines;
     _siteNameStyle = widget.siteNameStyle;
     _previewContainerPadding = widget.previewContainerPadding;
+    _elevation = widget.elevation;
     _onTap = widget.onTap ?? _launchURL;
   }
 
@@ -213,7 +219,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
 
   Card _buildPreviewCard(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: _elevation,
       color: _bgColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
