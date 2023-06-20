@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue,
-        accentColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Simple Url Preview Demo'),
@@ -50,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           SimpleUrlPreview(
             url: _url,
-            bgColor: Theme.of(context).accentColor,
+            bgColor: Colors.blue,
             isClosable: true,
             titleLines: 2,
             descriptionLines: 3,
