@@ -177,7 +177,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
     _isClosable = widget.isClosable ?? false;
     _bgColor = widget.bgColor ?? Theme.of(context).primaryColor;
     _imageLoaderColor =
-        widget.imageLoaderColor ?? Theme.of(context).accentColor;
+        widget.imageLoaderColor ?? Colors.blue;
     _initialize();
 
     if (_urlPreviewData == null || !_isVisible) {
@@ -247,7 +247,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                           ? TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
-                              color: Theme.of(context).accentColor,
+                              color: Colors.blue,
                             )
                           : _titleStyle,
                       _titleLines),
@@ -256,7 +256,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     _descriptionStyle == null
                         ? TextStyle(
                             fontSize: 14,
-                            color: Theme.of(context).accentColor,
+                            color: Colors.blue,
                           )
                         : _descriptionStyle,
                     _descriptionLines,
@@ -266,7 +266,7 @@ class _SimpleUrlPreviewState extends State<SimpleUrlPreview> {
                     _siteNameStyle == null
                         ? TextStyle(
                             fontSize: 14,
-                            color: Theme.of(context).accentColor,
+                            color: Colors.blue,
                           )
                         : _siteNameStyle,
                   ),
